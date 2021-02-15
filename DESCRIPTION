@@ -1,0 +1,22 @@
+Package: POSetR
+Type: Package
+Title: Partially Ordered Sets in R
+Version: 1.0
+Date: 2021-02-10
+Authors@R: c(person("Alberto", "Arcagni", role = c("aut", "cre"), email = "alberto.arcagni@uniroma1.it"), person("Alessandro", "Avellone", role = c("aut"), email = "alessandro.avellone@unimib.it"), person("Marco", "Fattore", role = c("aut"), email = "marco.fattore@unimib.it"))
+Author: Alberto Arcagni [aut, cre],
+  Alessandro Avellone [aut],
+  Marco Fattore [aut]
+Maintainer: Alberto Arcagni <alberto.arcagni@uniroma1.it>
+Description: Provides a set of basic tools for generating, analyzing, summarizing and visualizing finite partially ordered sets. In particular, it implements flexible and very efficient algorithms for the extraction of linear extensions and for the computation of mutual ranking probabilities and other user-defined functionals, over them. The package is meant as a computationally efficient "engine", for the implementation of data analysis procedures, on systems of multidimensional ordinal indicators and partially ordered data, in the spirit of Fattore, M. (2016) "Partially ordered sets and the measurement of multidimensional ordinal deprivation", Social Indicators Research <DOI:10.1007/s11205-015-1059-6>, and Fattore M. and Arcagni, A. (2018) "A reduced posetic approach to the measurement of multidimensional ordinal deprivation", Social Indicators Research <DOI:10.1007/s11205-016-1501-4>.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.0), igraph, methods, Rdpack
+RdMacros: Rdpack
+LinkingTo: Rcpp
+SystemRequirements: C++17
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2021-02-11 14:55:41 UTC; Alberto
+Repository: CRAN
+Date/Publication: 2021-02-15 10:10:08 UTC
