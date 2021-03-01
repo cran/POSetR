@@ -20,6 +20,23 @@
 
 // [[Rcpp::plugins(cpp17)]]
 
+/*
+ IN R
+ 
+ prima di compilare:
+ Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -Wsign-compare")
+ 
+ per eseguire:
+
+ require(Rcpp)
+ require(inline)
+ library(nome_del_package)
+ variabile_modulo <- Module(nome_del_modulo, getDynLib(nome_del_package))
+ nome_classe <- variabile_modulo$Classe_Esposta
+ oggetto_costruito <- new(nome_classe, lista_argomenti_costruttore)
+ 
+ */
+
 // ***********************************************
 // ***********************************************
 // ***********************************************
@@ -438,7 +455,6 @@ Rcpp::List POSetR::latticeOfIdeals() const {
 Rcpp::List POSetR::evaluation(Rcpp::List args)
 {
     try {
-        // std::cout << "Start output_file_name " << std::endl;
         std::string output_file_name = "";
         if (args.containsElementNamed("OutputFileName"))
             output_file_name = Rcpp::as<std::string>(args["OutputFileName"]);
@@ -458,9 +474,6 @@ Rcpp::List POSetR::evaluation(Rcpp::List args)
         
         // START
 
-        // std::cout << gle->to_string();
-        // std::cout << std::endl;
-
         std::shared_ptr<std::map<std::string, ParamType>> displayParms = std::make_shared<std::map<std::string, ParamType>>();
         std::shared_ptr<Rcpp::Function> pb_update_function = nullptr;
         if (args.containsElementNamed("ProgressBarUpdate")) {
@@ -471,12 +484,8 @@ Rcpp::List POSetR::evaluation(Rcpp::List args)
         (*displayParms)["NumberExtension"] = number_of_extension;
         std::shared_ptr<DisplayMessage> displayMessage = std::make_shared<DisplayMessageR>(displayParms);
 
-        // std::chrono::time_point<std::chrono::high_resolution_clock> start = std::chrono::high_resolution_clock::now();
         this->poset->evaluation(evaluation_parms, evaluation_result, number_of_extension, total_number_of_extension, end_process, displayMessage);
 
-        // long long elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
-        // std::cout << "\nTime: " << (elapsed_time / 1000) << "." << (elapsed_time % 1000) << "sec ";
-        // std::cout << std::endl;
         if (output_file_name != "") {
             evaluation_result->to_file(output_file_name);
         }
@@ -744,6 +753,7 @@ void POSetR::show() const {
 // ***********************************************
 
 RCPP_EXPOSED_CLASS(POSetR)
+
 
 RCPP_MODULE(poset_module) {
     Rcpp::class_<POSetR>( "POSet" )

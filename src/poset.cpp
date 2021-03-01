@@ -10,6 +10,7 @@
 #include <mutex>
 #include <chrono>
 
+#include "matrice.h"
 #include "linearExtension.h"
 #include "functionLinearExtension.h"
 #include "poset.h"
@@ -699,16 +700,20 @@ void POSet::evaluation(std::shared_ptr<std::map<std::string, ParamType>> parms,
       throw_line(err_str);
     }
     
-    std::vector<std::shared_ptr<Rcpp::NumericMatrix>> eval_results;
+    std::vector<std::shared_ptr<Matrice>> eval_results;
+    std::vector<std::shared_ptr<Rcpp::NumericMatrix>> results_rcpp;
     for (std::uint64_t k = 0; k < fles->size(); ++k) {
         std::shared_ptr<FunctionLinearExtension> fle = fles->at(k);
         std::pair<std::shared_ptr<std::vector<std::string>>, std::shared_ptr<std::vector<std::string>>> dim = fle->size();
-        std::shared_ptr<Rcpp::NumericMatrix> eval_result = std::make_shared<Rcpp::NumericMatrix>(dim.first->size(), dim.second->size());
-        Rcpp::CharacterVector rowsName(dim.first->begin(), dim.first->end());
-        Rcpp::rownames(*eval_result) = rowsName;
-        Rcpp::CharacterVector colsName(dim.second->begin(), dim.second->end());
-        Rcpp::colnames(*eval_result) = colsName;
+        std::shared_ptr<Matrice> eval_result = std::make_shared<Matrice>(dim.first->size(), dim.second->size());
         eval_results.push_back(eval_result);
+        
+        std::shared_ptr<Rcpp::NumericMatrix> result_rcpp = std::make_shared<Rcpp::NumericMatrix>(dim.first->size(), dim.second->size());
+        Rcpp::CharacterVector rowsName(dim.first->begin(), dim.first->end());
+        Rcpp::rownames(*result_rcpp) = rowsName;
+        Rcpp::CharacterVector colsName(dim.second->begin(), dim.second->end());
+        Rcpp::colnames(*result_rcpp) = colsName;
+        results_rcpp.push_back(result_rcpp);
     }
     
     (*current_number_linear_extension_generated) = 0;
@@ -725,7 +730,7 @@ void POSet::evaluation(std::shared_ptr<std::map<std::string, ParamType>> parms,
             for (std::uint64_t k = 0; k < fles->size(); ++k) {
                 std::shared_ptr<FunctionLinearExtension> fle = fles->at(k);
                 (*fle)(letrasnsf);
-                std::shared_ptr<Rcpp::NumericMatrix> eval_result = eval_results.at(k);
+                std::shared_ptr<Matrice> eval_result = eval_results.at(k);
                 this->AverageUpdate(eval_result, fle, (*current_number_linear_extension_generated));
             }
             ++(*current_number_linear_extension_generated);
@@ -737,7 +742,14 @@ void POSet::evaluation(std::shared_ptr<std::map<std::string, ParamType>> parms,
     }
     displayMessage->Stop();
     for (size_t k = 0; k < eval_results.size(); ++k) {
-        result->push_back(eval_results.at(k));
+        std::shared_ptr<Matrice> eval_result = eval_results.at(k);
+        std::shared_ptr<Rcpp::NumericMatrix> result_rcpp = results_rcpp.at(k);
+        for (int riga = 0; riga < result_rcpp->nrow(); ++riga) {
+            for (int colonna = 0; colonna < result_rcpp->ncol(); ++colonna) {
+                (*result_rcpp)(riga, colonna) = eval_result->at(riga, colonna);
+            }
+        }
+        result->push_back(result_rcpp);
     }
     *end_process = true;
     return;
@@ -747,7 +759,7 @@ void POSet::evaluation(std::shared_ptr<std::map<std::string, ParamType>> parms,
 // ***********************************************
 // ***********************************************
 
-void POSet::AverageUpdate(std::shared_ptr<Rcpp::NumericMatrix> ris,
+void POSet::AverageUpdate(std::shared_ptr<Matrice> ris,
                           std::shared_ptr<FunctionLinearExtension> fle,
                           std::uint64_t le_number) {
     // ris <- ris * (iter / (iter + 1)) + (val / (iter + 1)))
@@ -759,7 +771,7 @@ void POSet::AverageUpdate(std::shared_ptr<Rcpp::NumericMatrix> ris,
         
         double old_val = ris->at(first, second);
         double new_val = old_val * (le_number / (le_number + 1.0)) + add_val / (le_number + 1.0);
-        (*ris)(first, second) =  new_val;
+        (*ris)(first, second) = new_val;
     }
 }
 

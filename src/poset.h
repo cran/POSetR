@@ -15,6 +15,7 @@
 #include <Rcpp.h>
 
 #include "displayMessage.h"
+#include "matrice.h"
 #include "random.h"
 #include "evalResult.h"
 #include "paramType.h"
@@ -85,7 +86,7 @@ private:
     bool AddToDatastore(std::uint64_t);
     std::uint64_t TransitiveClosure(std::uint64_t, std::uint64_t);
     bool CheckAntisymmetric(std::uint64_t, std::uint64_t);
-    void AverageUpdate(std::shared_ptr<Rcpp::NumericMatrix>, std::shared_ptr<FunctionLinearExtension>, std::uint64_t);
+    void AverageUpdate(std::shared_ptr<Matrice>, std::shared_ptr<FunctionLinearExtension>, std::uint64_t);
 };
 
 

@@ -14,6 +14,7 @@ LEapply(x, ...)
   generator = c("AllLE", "BubleyDyer"),
   bubleydyer.precision = 10,
   bubleydyer.nit = NULL,
+  bubleydyer.progressBar = TRUE,
   degrees = NULL
 )
 }
@@ -29,6 +30,8 @@ LEapply(x, ...)
 \item{bubleydyer.precision}{considered only if \code{"BubleyDyer"} generator is selected. It corresponds to the number of digit precision of the frequencies in the sampling distributions of linear extensions.}
 
 \item{bubleydyer.nit}{considered only if \code{"BubleyDyer"} generator is selected. Number of iterations in the Bubley-Dyer algorithm, if NULL (default) it is set as indicated in Bubley and Dyer (1999) depending on the value of \code{bubleydyer.precision} and the number of elements of the poset.}
+
+\item{bubleydyer.progressBar}{logical that indicates whether to show a text progress bar or not}
 
 \item{degrees}{to generate the lexicographic linear extensions of a product order, the poset \code{x} describes the dominance (e.g. relative importance) between ordinal variables and \code{degrees} is a numerical vector specifying the number of degrees of each variable, represented by in the poset.}
 }
@@ -57,9 +60,8 @@ dom <- matrix(c(
 "b", "d"
 ), ncol = 2, byrow = TRUE)
 p <- poset(x = dom)
-plot(p)
 
-LEapply(
+\dontrun{#' LEapply(
   x = p,
   FUN = "MutualRankingProbability",
   generator = "AllLE",
@@ -69,12 +71,7 @@ LEapply(
 a_rank_dist <- function(le) {
   return(matrix(le == "a"))
 }
-LEapply(x = p, FUN = a_rank_dist)
-
-LEapply <- function(x, ...) {
-  UseMethod("LEapply")
-}
-
+LEapply(x = p, FUN = a_rank_dist)}
 }
 \references{
 \insertRef{bubley1999faster}{POSetR}

@@ -33,8 +33,14 @@ LatticeOfIdeals::LatticeOfIdeals (std::shared_ptr<TreeOfIdeals> tr, std::uint64_
             }
         }
         for (auto i: *(sort_k)) {
-            std::uint64_t pi = this->treeOfIdeals->getParent(i);
-            childrenSortedLabel->at(pi)->erase(i);
+          std::uint64_t pi = this->treeOfIdeals->getParent(i);
+          auto at_pi = childrenSortedLabel->at(pi);
+          for (auto it = at_pi->begin(); it != at_pi->end(); ++it) {
+            if (it->second == i) {
+              at_pi->erase(it);
+              break;
+            }
+          }
         }
     }
 }

@@ -43,7 +43,9 @@ void TreeOfIdeals::Right(std::uint64_t n, std::uint64_t r, std::uint64_t root) {
             continue;
         }
         std::shared_ptr<std::set<std::uint64_t>> ideal = this->ideals[root];
-        std::uint64_t t = this->newNode(ideal);
+        std::shared_ptr<std::set<std::uint64_t>> sub_ideal = std::make_shared<std::set<std::uint64_t>>(ideal->begin(), ideal->end());
+        sub_ideal->erase(label_s);
+        std::uint64_t t = this->newNode(sub_ideal);
         this->addChild(root, t, label_s);
         Right(n, s, t);
     }

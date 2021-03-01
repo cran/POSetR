@@ -7,8 +7,8 @@
 
 // [[Rcpp::plugins(cpp17)]]
 
-class POSetR
-{
+
+class POSetR {
 private:
     std::shared_ptr<POSet>  poset;
     

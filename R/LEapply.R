@@ -8,6 +8,7 @@
 #' @param generator a string specifying the method used to generate the linear extensions. The default value is \code{"AllLE"}. See section 'Details' below.
 #' @param bubleydyer.precision considered only if \code{"BubleyDyer"} generator is selected. It corresponds to the number of digit precision of the frequencies in the sampling distributions of linear extensions.
 #' @param bubleydyer.nit considered only if \code{"BubleyDyer"} generator is selected. Number of iterations in the Bubley-Dyer algorithm, if NULL (default) it is set as indicated in Bubley and Dyer (1999) depending on the value of \code{bubleydyer.precision} and the number of elements of the poset.
+#' @param bubleydyer.progressBar logical that indicates whether to show a text progress bar or not 
 #' @param degrees to generate the lexicographic linear extensions of a product order, the poset \code{x} describes the dominance (e.g. relative importance) between ordinal variables and \code{degrees} is a numerical vector specifying the number of degrees of each variable, represented by in the poset.
 #'
 #' @usage LEapply(x, ...)
@@ -18,6 +19,7 @@
 #'   generator = c("AllLE", "BubleyDyer"),
 #'   bubleydyer.precision = 10,
 #'   bubleydyer.nit = NULL,
+#'   bubleydyer.progressBar = TRUE,
 #'   degrees = NULL
 #' )
 #' 
@@ -53,9 +55,8 @@
 #' "b", "d"
 #' ), ncol = 2, byrow = TRUE)
 #' p <- poset(x = dom)
-#' plot(p)
 #' 
-#' LEapply(
+#' \dontrun{#' LEapply(
 #'   x = p,
 #'   FUN = "MutualRankingProbability",
 #'   generator = "AllLE",
@@ -65,14 +66,9 @@
 #' a_rank_dist <- function(le) {
 #'   return(matrix(le == "a"))
 #' }
-#' LEapply(x = p, FUN = a_rank_dist)
-#' 
-#' LEapply <- function(x, ...) {
-#'   UseMethod("LEapply")
-#' }
-#' 
-#' @export
+#' LEapply(x = p, FUN = a_rank_dist)}
 
+#' @export
 LEapply <- function(x, ...) {
   UseMethod("LEapply")
 }
@@ -92,6 +88,8 @@ LEapply.Rcpp_POSet <- function(
   bubleydyer.precision = 10, # number of digit precision of LE frequencies
   bubleydyer.nit = NULL, # number of iterations,
   
+  bubleydyer.progressBar = TRUE,
+  
   # Product order and lexicographic linear extensions
   degrees = NULL
   
@@ -104,7 +102,7 @@ LEapply.Rcpp_POSet <- function(
   
   generator <- generator[1]
   
-  stopifnot(generator %in% c("AllLE", "BubleyDyer"))
+  stopifnot(generator %in% c("AllLE", "BubleyDyer"))#, "oldAllLE"))
   
   if (generator == "AllLE")
     generator <- "hmnsAllLE"
@@ -180,8 +178,10 @@ LEapply.Rcpp_POSet <- function(
   
   pb <- NULL
   if (generator == "BubleyDyer") {
-    cat("Number of iterations:", bubleydyer.nit, "\n")
-    pb <- txtProgressBar(style = 3, max = bubleydyer.nit)
+    if (bubleydyer.progressBar) {
+      cat("Number of iterations:", bubleydyer.nit, "\n")
+      pb <- txtProgressBar(style = 3, max = bubleydyer.nit)
+    }
     args$BubleyDyerSeed <- as.integer(runif(1, 0, .Machine$integer.max))
     args$BubleyDyerMaxIterations = bubleydyer.nit
   }

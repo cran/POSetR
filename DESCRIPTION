@@ -1,8 +1,8 @@
 Package: POSetR
 Type: Package
 Title: Partially Ordered Sets in R
-Version: 1.0
-Date: 2021-02-10
+Version: 1.0.1
+Date: 2021-03-01
 Authors@R: c(person("Alberto", "Arcagni", role = c("aut", "cre"), email = "alberto.arcagni@uniroma1.it"), person("Alessandro", "Avellone", role = c("aut"), email = "alessandro.avellone@unimib.it"), person("Marco", "Fattore", role = c("aut"), email = "marco.fattore@unimib.it"))
 Author: Alberto Arcagni [aut, cre],
   Alessandro Avellone [aut],
@@ -17,6 +17,6 @@ SystemRequirements: C++17
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 NeedsCompilation: yes
-Packaged: 2021-02-11 14:55:41 UTC; Alberto
+Packaged: 2021-03-01 10:23:04 UTC; Alberto
 Repository: CRAN
-Date/Publication: 2021-02-15 10:10:08 UTC
+Date/Publication: 2021-03-01 11:20:06 UTC
