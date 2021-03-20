@@ -20,11 +20,11 @@ public:
     }
     
     double& operator()(std::uint64_t row, std::uint64_t col) {
-        return dati[row * this->rows + col];
+        return dati[row * this->cols + col];
     }
     
     double at(std::uint64_t row, std::uint64_t col) {
-        return dati[row * this->rows + col];
+        return dati[row * this->cols + col];
     }
     
     

@@ -1,6 +1,6 @@
-548057c09f0087e21db17693d71294b1 *DESCRIPTION
+908d03466a6b31c86eb02be1bf6905df *DESCRIPTION
 3cdf3bb06ab188831b9172afdfe5c5e0 *NAMESPACE
-1330ea215f50b108e0a5c679953e7e72 *R/LEapply.R
+d7aa81741635b44eedc9711939c3fcaf *R/LEapply.R
 91bc0e32f5265e7e9836c52789853077 *R/POSetR-package.R
 e574306257c03a5bd7926349877933d0 *R/antiChain.R
 57508234ef49f3640c30147553f087a4 *R/chain.R
@@ -11,9 +11,9 @@ d00196daf69d20d3cbd2232fabc93c53 *R/plot.Rcpp_POSet.R
 6595b055fe9e95208ba380912c3fda28 *R/print.summary_poset.R
 cbff3797a63f37980a88c12e3271ab15 *R/productOrder.R
 ec2720cdc018781d56b2a8e105bb5ec4 *R/summary.Rcpp_POSet.R
-c3a5697547b4b7fe68684d52202aaf2d *build/partial.rdb
+aadc3b1240586042592f73fa561f727a *build/partial.rdb
 fac8ef20a7dd160e088483b75b8be8bd *inst/REFERENCES.bib
-a87ef389d613248dfbf37a3b49b20059 *man/LEapply.Rd
+47126b320fdcc40a3be153253a667fef *man/LEapply.Rd
 e8c720e016fc9eb0a43d84609263f137 *man/POSetR-package.Rd
 476556d0a91364a54cc1260376bb6cc5 *man/antiChain.Rd
 3e8cd8821369a148e4ae117e5054927a *man/chain.Rd
@@ -51,7 +51,7 @@ dab326dbbd86e45e6c6c5edf29d382c5 *src/linearExtensionGenerator.cpp
 aad4fbd3574726d91ca4ed4b4d70eb4f *src/linearExtentionLatticeOfIdeals.h
 2380cf5b86c1718c35d67f28a634e71a *src/linearExtentionTreeOfIdeals.cpp
 c08c5519463cb76e8cfb0907bffc11b9 *src/linearExtentionTreeOfIdeals.h
-bd26943b01da4f74dfd8e1f333ebfb5d *src/matrice.h
+9052873e9a7c50417ecf696f3dd96913 *src/matrice.h
 cab5dda82990640f61d5da5011a82317 *src/myException.h
 5746efe51edce45ce2ecc119fe7cf508 *src/paramType.h
 edcfc6a888f67eb1c5d6ab265be0950c *src/poset.cpp

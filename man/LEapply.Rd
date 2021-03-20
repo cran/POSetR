@@ -61,7 +61,8 @@ dom <- matrix(c(
 ), ncol = 2, byrow = TRUE)
 p <- poset(x = dom)
 
-\dontrun{#' LEapply(
+\dontrun{
+LEapply(
   x = p,
   FUN = "MutualRankingProbability",
   generator = "AllLE",
