@@ -1,4 +1,4 @@
-#' Generates a Partially Odered SET from the list of dominances
+#' Generates a Partially Ordered SET from the list of dominances
 #' @description Function \code{poset} creates a poset from a dominance list. \code{x} argument is a two-column matrix, each row defines a pair of comparable elements, where the element in the first column is dominated by or coincide with the element in the second column. If the elements of \code{x} are numeric, they are first coerced to character and used as elements labels. 
 #' @param x an object of class \code{matrix} with two columns, listing the dominances, by rows.
 #' @param elements a vector of characters listing all the labels of the elements.
@@ -9,13 +9,13 @@
 #' If some elements are incomparable, list all of the elements in \code{elements} or include self-comparabilities in \code{x}. Notice that antichains can be created in a simpler way, by function
 #' \code{\link[POSetR]{antiChain}}.
 #'
-#' @aliases poset POSet Rcpp_POSet-class C++Object-class
+#' @aliases POSet poset POSetR Rcpp_POSet-class C++Object-class
 #' 
 #' @export
 #' 
-#' @seealso in the package are available functions that simply the creation of particular
-#' posets: \code{\link[POSetR]{antiChain}} to create a poset without comparabilities,
-#' \code{\link[POSetR]{chain}} to create a complete order.
+#' @seealso in the package are available functions that simply the creation of particular posets: \code{\link[POSetR]{antiChain}} to create a poset without comparabilities,
+#' \code{\link[POSetR]{chain}} to create a complete order,
+#' \code{\link[POSetR]{poset_from_dataframe}} to create a poset from a statistical population.
 #' @examples
 #' dom <- matrix(c(
 #'   "a", "b",

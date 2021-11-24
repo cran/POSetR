@@ -33,6 +33,7 @@ summary.Rcpp_POSet <- function(object, ...) {
   
   res$elements_number <- length(res$elements)
   res$comparabilities_number <- nrow(res$comparabilities)
+  # res$comparabilities_number <- 2 * res$comparabilities_number + res$elements_number
   res$incomparabilities_number <- nrow(res$incomparabilities)
   
   class(res) <- "summary_poset"

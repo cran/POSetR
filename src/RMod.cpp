@@ -14,9 +14,7 @@
 #include "poset.h"
 #include "myException.h"
 
-
 #define throw_line(arg) throw my_exception(arg, __FILE__, __LINE__);
-
 
 // [[Rcpp::plugins(cpp17)]]
 
@@ -762,15 +760,15 @@ RCPP_MODULE(poset_module) {
     .constructor<Rcpp::StringVector>()
     .method("comparabilities", &POSetR::comparabilities)
     .method("coverMatrix", &POSetR::CoverMatrix)
-    .method("coveredBy", &POSetR::coveredBy)
-    .method("downSet", &POSetR::downSet)
+    // .method("coveredBy", &POSetR::coveredBy)
+    // .method("downSet", &POSetR::downSet)
     .method("elements", &POSetR::Elements)
     .method("evaluation", &POSetR::evaluation)
     .method("incidenceMatrix", &POSetR::IncidenceMatrix)
     .method("incomparabilities", &POSetR::incomparabilities)
     .method("show", &POSetR::show)
-    .method("latticeOfIdeals", &POSetR::latticeOfIdeals)
-    .method("upSet", &POSetR::upSet)
+    // .method("latticeOfIdeals", &POSetR::latticeOfIdeals)
+    // .method("upSet", &POSetR::upSet)
     .method("firstLE", &POSetR::firstLE)
     ;
 }

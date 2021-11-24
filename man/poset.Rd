@@ -3,9 +3,10 @@
 \name{poset}
 \alias{poset}
 \alias{POSet}
+\alias{POSetR}
 \alias{Rcpp_POSet-class}
 \alias{C++Object-class}
-\title{Generates a Partially Odered SET from the list of dominances}
+\title{Generates a Partially Ordered SET from the list of dominances}
 \usage{
 poset(x = NULL, elements = unique(as.character(x)))
 }
@@ -37,7 +38,7 @@ poset(x = dom)
 poset(x = dom, elements = letters[1:5])
 }
 \seealso{
-in the package are available functions that simply the creation of particular
-posets: \code{\link[POSetR]{antiChain}} to create a poset without comparabilities,
-\code{\link[POSetR]{chain}} to create a complete order.
+in the package are available functions that simply the creation of particular posets: \code{\link[POSetR]{antiChain}} to create a poset without comparabilities,
+\code{\link[POSetR]{chain}} to create a complete order,
+\code{\link[POSetR]{poset_from_dataframe}} to create a poset from a statistical population.
 }

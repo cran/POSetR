@@ -98,7 +98,8 @@ LEapply.Rcpp_POSet <- function(
   
   if (is.null(bubleydyer.nit)) {
     n <- length(x$elements())
-    bubleydyer.nit <- trunc((n^4 * log(n)^2) + (n^3 * log(n) * bubleydyer.precision))
+    # bubleydyer.nit <- trunc((n^4 * log(n)^2) + (n^3 * log(n) * bubleydyer.precision))
+    bubleydyer.nit <- trunc((n^3 * log(n * bubleydyer.precision)))
   }
   
   generator <- generator[1]
