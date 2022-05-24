@@ -33,13 +33,13 @@
 #' \insertRef{davey2002introduction}{POSetR}
 
 intersection <- function(x, y) {
-  stopifnot(all(x$elements() %in% y$elements()))
-  stopifnot(all(y$elements() %in% x$elements()))
+  stopifnot(all(x$pointer$elements() %in% y$pointer$elements()))
+  stopifnot(all(y$pointer$elements() %in% x$pointer$elements()))
   
-  cmp <- rbind(x$comparabilities(), y$comparabilities())
+  cmp <- rbind(x$pointer$comparabilities(), y$pointer$comparabilities())
   cmp <- cmp[duplicated(cmp), , drop = FALSE]
   
-  poset(cmp, x$elements())
+  poset(cmp, x$pointer$elements())
 }
 
 #' @export

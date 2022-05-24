@@ -30,5 +30,5 @@ summary(chain(1:4))
 summary(antiChain(LETTERS[1:5]))
 }
 \seealso{
-\code{\link[POSetR]{summary.Rcpp_POSet}}
+\code{\link[POSetR]{summary.poset}}
 }

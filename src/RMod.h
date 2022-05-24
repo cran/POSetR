@@ -48,6 +48,7 @@ private:
     };
     
 public:
+    
     POSetR(Rcpp::StringVector elements1, Rcpp::StringMatrix comparabilities1, Rcpp::StringVector elements2, Rcpp::StringMatrix comparabilities2, Rcpp::String separator);
     POSetR(Rcpp::StringVector elements, Rcpp::StringMatrix comparabilities);
     POSetR(Rcpp::StringVector elements);
@@ -64,6 +65,7 @@ public:
     Rcpp::StringVector upSet(Rcpp::StringVector) const;
     Rcpp::List latticeOfIdeals() const;
     void show() const;
+    void testPointer() const{};
 private:
     std::shared_ptr<TranformExtension> evaluationTE(Rcpp::List args);
     std::shared_ptr<std::vector<std::shared_ptr<FunctionLinearExtension>>> evaluationFLE(Rcpp::List args, std::shared_ptr<std::map<std::uint64_t, std::string>> fleKeys);

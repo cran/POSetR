@@ -2,19 +2,19 @@
 % Please edit documentation in R/utilities.R
 \name{coverMatrix}
 \alias{coverMatrix}
-\alias{coverMatrix.Rcpp_POSet}
+\alias{coverMatrix.poset}
 \title{Poset cover matrix}
 \usage{
 coverMatrix(x)
 }
 \arguments{
-\item{x}{an object of class \code{\link[POSetR:poset]{Rcpp_POSet}}.}
+\item{x}{an object of class \code{\link[POSetR:poset]{poset}}.}
 }
 \value{
 a logical square matrix.
 }
 \description{
-The function returns the cover matrix for objects of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+The function returns the cover matrix for objects of class \code{\link[POSetR:poset]{poset}}.
 }
 \examples{
 dom <- matrix(c(

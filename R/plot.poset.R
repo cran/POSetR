@@ -1,7 +1,7 @@
 #' Plotting the Hasse diagram of a poset
 #' 
 #' @description \code{plot} produces an \code{\link[igraph:make_graph]{igraph}} object and shows the Hasse diagram.
-#' @details \code{plot.Rcpp_POSet} computes the cover relation and produces the corresponding Directed Acyclic Graph (DAG), as an \code{\link[igraph:make_graph]{igraph}} object, returned as invisible output.
+#' @details \code{plot.poset} computes the cover relation and produces the corresponding Directed Acyclic Graph (DAG), as an \code{\link[igraph:make_graph]{igraph}} object, returned as invisible output.
 #' Function \code{\link[igraph]{layout_with_sugiyama}} generates the DAG layout with edges oriented from top to bottom. When \code{equispaced=TRUE}, nodes on the same Hasse diagram level are horizontally equispaced.
 #' 
 #' The Hasse diagram is displayed by a call to \code{\link[igraph]{plot.igraph}} (some default argument values are set to get a cleaner plot, by exploiting Hasse diagram properties.
@@ -39,9 +39,9 @@
 #' hasse <- plot(p)
 #' class(hasse)
 
-plot.Rcpp_POSet <- function(x,
+plot.poset <- function(x,
   vertex.color = rgb(1, 1, 1, 1),
-  vertex.label = x$elements(),
+  vertex.label = x$pointer$elements(),
   vertex.label.color = rgb(0, 0, 0, 1),
   vertex.label.family = "sans",
   edge.color = rgb(0, 0, 0, 1),
@@ -52,9 +52,11 @@ plot.Rcpp_POSet <- function(x,
   equispaced = FALSE, 
   show = TRUE) {
   
-  g <- igraph::graph_from_adjacency_matrix(t(x$coverMatrix()))
+  pointerRebuild(x)
   
-  n <- length(x$elements())
+  g <- igraph::graph_from_adjacency_matrix(t(x$pointer$coverMatrix()))
+  
+  n <- length(x$pointer$elements())
   
   if (n > 1) {
     ly <- igraph::layout_with_sugiyama(g)$layout

@@ -2,7 +2,7 @@
 #' @description This function generates a poset from an object\code{g}. The function checks if the graph is directed and cyclic in oreder it represent the cover-relation.
 #' 
 #' @param g an \code{igraph} object
-#' @return an S4 object of class \code{Rcpp_POSet}; this class contains different C++ methods used by other functions of the package.
+#' @return an environment of class \code{poset}.
 #' 
 #' @details Note that the Hasse diagram represents the cover relation from the top to the bottom, therefore its representation is the opposite of the plot of the graph with Sugiyama layout.
 #' 
@@ -24,7 +24,7 @@
 #' plot(p)
 
 poset_from_igraph <- function(g) {
-  if (class(g) != "igraph")
+  if (!is(g, "igraph"))
     stop("g is not an igraph object")
   if (!igraph::is.dag(g))
     stop("g is not a directed aciclic graph")

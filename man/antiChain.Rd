@@ -10,7 +10,7 @@ antiChain(elements)
 \item{elements}{a vector of characters with elements' labels.}
 }
 \value{
-an S4 object of class \code{Rcpp_POSet}.
+an environment of class \code{poset}.
 }
 \description{
 The function produces an antichain from the vector of elements' labels \code{elements}.

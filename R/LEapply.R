@@ -2,7 +2,7 @@
 #' 
 #' @description \code{"LEapply"} is composed of three main elements: (i) the linear extensions generator, (ii) the application of the argument functions to the linear extensions and (iii) the computation of the averages of the results, for each function separately; see \insertRef{fattore2016partially}{POSetR}.
 #'
-#' @param x an S4 object of class \code{Rcpp_POSet}, see \code{\link[POSetR]{poset}} for details.
+#' @param x an environment of class \code{poset}, see \code{\link[POSetR]{poset}} for details.
 #' @param FUN the function, or a list of functions, to be applied to each linear extension: see 'Details'.
 #' @param ... optional arguments to \code{FUN}.
 #' @param generator a string specifying the method used to generate the linear extensions. The default value is \code{"AllLE"}. See section 'Details' below.
@@ -12,7 +12,7 @@
 #' @param degrees to generate the lexicographic linear extensions of a product order, the poset \code{x} describes the dominance (e.g. relative importance) between ordinal variables and \code{degrees} is a numerical vector specifying the number of degrees of each variable, represented by in the poset.
 #'
 #' @usage LEapply(x, ...)
-#' @usage \method{LEapply}{Rcpp_POSet}(
+#' @usage \method{LEapply}{poset}(
 #'   x,
 #'   FUN = "MutualRankingProbability",
 #'   ...,
@@ -23,7 +23,7 @@
 #'   degrees = NULL
 #' )
 #' 
-#' @aliases LEapply LEapply.Rcpp_POSet
+#' @aliases LEapply LEapply.poset
 #' 
 #' @return The average values of the argument functions \code{FUN} over the set of linear extensions (or lexicographic ones if \code{degrees} argument is not \code{NULL}).
 #' 
@@ -34,7 +34,7 @@
 #' Some functions are already implemented in the \code{C++} library and they can be called by their names. Currently, such functions are \code{"MutualRankingProbability"}, \code{"Separation"}, and \code{"AverageHeight"}.
 #' 
 #' Each function in \code{FUN} must return a numerical or logical matrix.
-#' Each function can depend on additional arguments that can be passed through \code{...}; such additinal arguments must be the same for all the functions in the list.
+#' Each function can depend on additional arguments that can be passed through \code{...}; such additional arguments must be the same for all the functions in the list.
 #' 
 #' Argument \code{generator} specifies the linear extension generation algorithm. The available generators are \code{"AllLE"}, that produces all of the linear extensions of the input poset, and \code{"BubleyDyer"}, which samples uniformly from the set of linear extensions, through an MCMC algorithm \insertCite{bubley1999faster}{POSetR}.
 #'
@@ -74,9 +74,9 @@ LEapply <- function(x, ...) {
   UseMethod("LEapply")
 }
 
-#' @method LEapply Rcpp_POSet
+#' @method LEapply poset
 #' @export
-LEapply.Rcpp_POSet <- function(
+LEapply.poset <- function(
   # lapply-sapply functions arguments
   x,
   FUN = "MutualRankingProbability", # it is possible to use also a list of functions but all of them shoud depend from the same set of arguments ...
@@ -96,8 +96,10 @@ LEapply.Rcpp_POSet <- function(
   
 ) {
   
+  pointerRebuild(x)
+  
   if (is.null(bubleydyer.nit)) {
-    n <- length(x$elements())
+    n <- length(x$pointer$elements())
     # bubleydyer.nit <- trunc((n^4 * log(n)^2) + (n^3 * log(n) * bubleydyer.precision))
     bubleydyer.nit <- trunc((n^3 * log(n * bubleydyer.precision)))
   }
@@ -112,14 +114,14 @@ LEapply.Rcpp_POSet <- function(
   if (generator == "oldAllLE")
     generator <- "AllLE"
   
-  if (class(FUN) == "character")
+  if (is(FUN, "character"))
     FUN <- as.list(FUN)
   
   if (!is.list(FUN))
     FUN <- list(FUN)
   
   FUN_no_args <- lapply(FUN, function(fun) {
-    if (class(fun) != "function") {
+    if (!is(fun,"function")) {
       stopifnot(fun %in% c("MutualRankingProbability", "Separation", "AverageHeight"))
       return(fun)
     }
@@ -133,20 +135,20 @@ LEapply.Rcpp_POSet <- function(
     # LinearExtensionGeneratorOutputFile = "" # just for tests
   )
   
-  fle <- x$firstLE()
+  fle <- x$pointer$firstLE()
   
   if (is.null(degrees)) {
     if (any(FUN_no_args == "MutualRankingProbability")) { #, "Separation"))) {
-      args$FLEMRPSelection <- x$incomparabilities()
+      args$FLEMRPSelection <- x$pointer$incomparabilities()
     }
     # if (any(FUN_no_args == "Separation")) {
-      # args$FLESepSelection <- x$incomparabilities()
+      # args$FLESepSelection <- x$pointer$incomparabilities()
     # }
   } else {
     # FLESelection not defined yet for Lexicographical linear extensions
     
-    stopifnot(length(degrees) == length(x$elements()))
-    names(degrees) <- x$elements()
+    stopifnot(length(degrees) == length(x$pointer$elements()))
+    names(degrees) <- x$pointer$elements()
     args$TranformExtension <- "Lexicographical"
     args$TEModalities <- degrees
     
@@ -164,7 +166,7 @@ LEapply.Rcpp_POSet <- function(
   init <- NULL
   for (j in 1:length(FUN_no_args)) {
     test <- NULL
-    if (class(FUN_no_args[[j]]) == "function") {
+    if (is(FUN_no_args[[j]], "function")) {
       test <- FUN_no_args[[j]](fle)
       if (class(test)[1] != "matrix")
         stop(paste("the output of function number", j, "is not a matrix"))
@@ -192,22 +194,22 @@ LEapply.Rcpp_POSet <- function(
     args$ProgressBarUpdate = function(x) setTxtProgressBar(pb, value = x)
   
   # evaluation
-  res <- x$evaluation(args)
-  
+  res <- x$pointer$evaluation(args)
+
   if (!is.null(pb))
     close(pb)
   
   if (is.null(degrees)) {
-    MRPidx <- which(sapply(FUN, function(fun) class(fun) == "character" && fun == "MutualRankingProbability"))
+    MRPidx <- which(sapply(FUN, function(fun) is(fun, "character") && fun == "MutualRankingProbability"))
     if (length(MRPidx) > 0) {
-      I <- x$incidenceMatrix()
+      I <- x$pointer$incidenceMatrix()
       for (j in MRPidx)
         res[[j]] <- I + res[[j]] + t(1 - res[[j]]) * t(res[[j]] > 0)
     }
   }
   
   for (j in 1:length(res)) {
-    if (class(FUN[[j]]) == "function")
+    if (is(FUN[[j]], "function"))
       dimnames(res[[j]]) <- dimnames(init[[j]])
   }
   

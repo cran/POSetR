@@ -10,7 +10,7 @@ poset_from_igraph(g)
 \item{g}{an \code{igraph} object}
 }
 \value{
-an S4 object of class \code{Rcpp_POSet}; this class contains different C++ methods used by other functions of the package.
+an environment of class \code{poset}.
 }
 \description{
 This function generates a poset from an object\code{g}. The function checks if the graph is directed and cyclic in oreder it represent the cover-relation.

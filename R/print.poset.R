@@ -14,8 +14,9 @@
 #' p <- poset(x = dom)
 #' print(p)
 
-print.Rcpp_POSet <- function(x, max = NULL, ...) {
-  e <- x$elements()
+print.poset <- function(x, max = NULL, ...) {
+  pointerRebuild(x)
+  e <- x$pointer$elements()
   n <- length(e)
   if (is.null(max))
     max <- getOption("max.print")
@@ -25,8 +26,7 @@ print.Rcpp_POSet <- function(x, max = NULL, ...) {
   if (n > m)
     cat(", ...")
   cat("\n")
-  rm(e)
-  x <- x$comparabilities()
+  x <- x$pointer$comparabilities()
   n <- nrow(x)
   if (n > 0) {
     m <- min(n, max)

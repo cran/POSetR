@@ -767,8 +767,9 @@ RCPP_MODULE(poset_module) {
     .method("incidenceMatrix", &POSetR::IncidenceMatrix)
     .method("incomparabilities", &POSetR::incomparabilities)
     .method("show", &POSetR::show)
-    // .method("latticeOfIdeals", &POSetR::latticeOfIdeals)
+    .method("latticeOfIdeals", &POSetR::latticeOfIdeals)
     // .method("upSet", &POSetR::upSet)
     .method("firstLE", &POSetR::firstLE)
+    .method("testPointer", &POSetR::testPointer)
     ;
 }

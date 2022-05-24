@@ -1,13 +1,13 @@
 #' Poset summary
 #' 
-#' @description Method of the \code{\link[base]{summary}} function for objects of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @description Method of the \code{\link[base]{summary}} function for objects of class \code{\link[POSetR:poset]{poset}}.
 #'
-#' @param object an object of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @param object an object of class \code{\link[POSetR:poset]{poset}}.
 #' @param ... further arguments passed to or from other methods.
 #'
 #' @return An S3 object of class \code{summary_poset} listing and counting the poset elements, their strict dominances and their incomparabilities.
 #' 
-#' @aliases summary.Rcpp_POSet
+#' @aliases summary.poset
 #' 
 #' @export
 #'
@@ -23,12 +23,14 @@
 #' summary(chain(1:4))
 #' summary(antiChain(LETTERS[1:5]))
 
-summary.Rcpp_POSet <- function(object, ...) {
+summary.poset <- function(object, ...) {
+  
+  pointerRebuild(object)
   
   res <- list(
-    elements = object$elements(),
-    comparabilities = object$comparabilities(),
-    incomparabilities = object$incomparabilities()
+    elements = object$pointer$elements(),
+    comparabilities = object$pointer$comparabilities(),
+    incomparabilities = object$pointer$incomparabilities()
   )
   
   res$elements_number <- length(res$elements)

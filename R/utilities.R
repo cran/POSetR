@@ -1,12 +1,12 @@
 #' Poset incidence matrix
 #' 
-#' @description The function returns the incidence matrix for objects of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @description The function returns the incidence matrix for objects of class \code{\link[POSetR:poset]{poset}}.
 #'
-#' @param x an object of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @param x an object of class \code{\link[POSetR:poset]{poset}}.
 #'
 #' @return a logical square matrix.
 #' 
-#' @aliases incidenceMatrix incidenceMatrix.Rcpp_POSet
+#' @aliases incidenceMatrix incidenceMatrix.poset
 #'
 #' @examples
 #' dom <- matrix(c(
@@ -22,23 +22,24 @@ incidenceMatrix <- function(x) {
   UseMethod("incidenceMatrix")
 }
 
-#' @method incidenceMatrix Rcpp_POSet
+#' @method incidenceMatrix poset
 #' @export
-incidenceMatrix.Rcpp_POSet <- function(x) {
-  return(x$incidenceMatrix())
+incidenceMatrix.poset <- function(x) {
+  pointerRebuild(x)
+  return(x$pointer$incidenceMatrix())
 }
 
 ########################
 
 #' Poset cover matrix
 #' 
-#' @description The function returns the cover matrix for objects of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @description The function returns the cover matrix for objects of class \code{\link[POSetR:poset]{poset}}.
 #'
-#' @param x an object of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+#' @param x an object of class \code{\link[POSetR:poset]{poset}}.
 #'
 #' @return a logical square matrix.
 #' 
-#' @aliases coverMatrix coverMatrix.Rcpp_POSet
+#' @aliases coverMatrix coverMatrix.poset
 #'
 #' @examples
 #' dom <- matrix(c(
@@ -54,8 +55,9 @@ coverMatrix <- function(x) {
   UseMethod("coverMatrix")
 }
 
-#' @method coverMatrix Rcpp_POSet
+#' @method coverMatrix poset
 #' @export
-coverMatrix.Rcpp_POSet <- function(x) {
-  return(x$coverMatrix())
+coverMatrix.poset <- function(x) {
+  pointerRebuild(x)
+  return(x$pointer$coverMatrix())
 }

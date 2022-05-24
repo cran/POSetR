@@ -5,7 +5,7 @@
 #' @return nothing
 #' @export
 #' @aliases print.summary_poset
-#' @seealso \code{\link[POSetR]{summary.Rcpp_POSet}}
+#' @seealso \code{\link[POSetR]{summary.poset}}
 #' @examples
 #' dom <- matrix(c(
 #'   "a", "b",

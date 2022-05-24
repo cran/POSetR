@@ -8,6 +8,7 @@
 #' @importFrom Rcpp evalCpp
 #' @importFrom grDevices rgb
 #' @importFrom methods new
+#' @importFrom methods is
 #' @importFrom stats aggregate
 #' @importFrom stats median runif
 #' @importFrom utils setTxtProgressBar txtProgressBar

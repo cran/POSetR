@@ -6,6 +6,8 @@
 \alias{POSetR}
 \alias{Rcpp_POSet-class}
 \alias{C++Object-class}
+\alias{poset-class}
+\alias{pointerRebuild}
 \title{Generates a Partially Ordered SET from the list of dominances}
 \usage{
 poset(x = NULL, elements = unique(as.character(x)))
@@ -16,7 +18,7 @@ poset(x = NULL, elements = unique(as.character(x)))
 \item{elements}{a vector of characters listing all the labels of the elements.}
 }
 \value{
-an S4 object of class \code{Rcpp_POSet}; this class contains different C++ methods used by other functions of the package.
+an environment of class \code{poset}; this class contains a pointer with different C++ methods used by other functions of the package.
 }
 \description{
 Function \code{poset} creates a poset from a dominance list. \code{x} argument is a two-column matrix, each row defines a pair of comparable elements, where the element in the first column is dominated by or coincide with the element in the second column. If the elements of \code{x} are numeric, they are first coerced to character and used as elements labels.

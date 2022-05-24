@@ -2,19 +2,19 @@
 % Please edit documentation in R/utilities.R
 \name{incidenceMatrix}
 \alias{incidenceMatrix}
-\alias{incidenceMatrix.Rcpp_POSet}
+\alias{incidenceMatrix.poset}
 \title{Poset incidence matrix}
 \usage{
 incidenceMatrix(x)
 }
 \arguments{
-\item{x}{an object of class \code{\link[POSetR:poset]{Rcpp_POSet}}.}
+\item{x}{an object of class \code{\link[POSetR:poset]{poset}}.}
 }
 \value{
 a logical square matrix.
 }
 \description{
-The function returns the incidence matrix for objects of class \code{\link[POSetR:poset]{Rcpp_POSet}}.
+The function returns the incidence matrix for objects of class \code{\link[POSetR:poset]{poset}}.
 }
 \examples{
 dom <- matrix(c(

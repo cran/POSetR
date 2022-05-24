@@ -10,14 +10,14 @@ productOrder(x, y, sep = "-")
 x \%po\% y
 }
 \arguments{
-\item{x}{an S4 object of class \code{Rcpp_POSet}, see \code{\link[POSetR]{poset}} for details.}
+\item{x}{an S4 object of class \code{poset}, see \code{\link[POSetR]{poset}} for details.}
 
-\item{y}{an S4 object of class \code{Rcpp_POSet}, see \code{\link[POSetR]{poset}} for details.}
+\item{y}{an S4 object of class \code{poset}, see \code{\link[POSetR]{poset}} for details.}
 
 \item{sep}{a character object indicating the separator to be used to paste profiles names.}
 }
 \value{
-an S4 object of class \code{Rcpp_POSet}, see \code{\link[POSetR]{poset}} for details
+an environment of class \code{poset}, see \code{\link[POSetR]{poset}} for details
 }
 \description{
 The function returns the product poset of two posets \code{X} and \code{Y}.

@@ -2,12 +2,12 @@
 % Please edit documentation in R/LEapply.R
 \name{LEapply}
 \alias{LEapply}
-\alias{LEapply.Rcpp_POSet}
+\alias{LEapply.poset}
 \title{Applies scalar functions over the set of linear extensions of a poset and returns the corresponding average values}
 \usage{
 LEapply(x, ...)
 
-\method{LEapply}{Rcpp_POSet}(
+\method{LEapply}{poset}(
   x,
   FUN = "MutualRankingProbability",
   ...,
@@ -19,7 +19,7 @@ LEapply(x, ...)
 )
 }
 \arguments{
-\item{x}{an S4 object of class \code{Rcpp_POSet}, see \code{\link[POSetR]{poset}} for details.}
+\item{x}{an environment of class \code{poset}, see \code{\link[POSetR]{poset}} for details.}
 
 \item{...}{optional arguments to \code{FUN}.}
 
@@ -49,7 +49,7 @@ If \code{degrees} is not \code{NULL} but a numerical vector as long as the numbe
 Some functions are already implemented in the \code{C++} library and they can be called by their names. Currently, such functions are \code{"MutualRankingProbability"}, \code{"Separation"}, and \code{"AverageHeight"}.
 
 Each function in \code{FUN} must return a numerical or logical matrix.
-Each function can depend on additional arguments that can be passed through \code{...}; such additinal arguments must be the same for all the functions in the list.
+Each function can depend on additional arguments that can be passed through \code{...}; such additional arguments must be the same for all the functions in the list.
 
 Argument \code{generator} specifies the linear extension generation algorithm. The available generators are \code{"AllLE"}, that produces all of the linear extensions of the input poset, and \code{"BubleyDyer"}, which samples uniformly from the set of linear extensions, through an MCMC algorithm \insertCite{bubley1999faster}{POSetR}.
 }

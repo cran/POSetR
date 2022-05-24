@@ -6,7 +6,7 @@
 #'
 #' @param elements a vector of characters listing the elements' labels.
 #'
-#' @return an S4 object of class \code{Rcpp_POSet}.
+#' @return an environment of class \code{poset}.
 #' 
 #' @export
 #'

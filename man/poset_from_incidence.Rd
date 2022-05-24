@@ -10,7 +10,7 @@ poset_from_incidence(x)
 \item{x}{a \code{logical} matrix.}
 }
 \value{
-an S4 object of class \code{Rcpp_POSet}; this class contains different C++ methods used by other functions of the package.
+an environment of class \code{poset}.
 }
 \description{
 This function generates a poset from an incidence matrix \code{x}. Such matrix is a named and \code{logical} that is \code{TRUE} if the row element is dominated by the column one, \code{FALSE} otherwise. Such incidence relation should be reflexive, anti-symmetric, and transitive..
