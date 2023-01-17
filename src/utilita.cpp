@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <mutex>
+#include <cstdint>
 
 #include "utilita.h"
 

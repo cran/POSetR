@@ -12,6 +12,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <cstdint>
 extern const char DELIMETER;
 
 class LinearExtension
@@ -31,7 +32,7 @@ public:
     std::string to_string() {
         std::string result = "";
         bool first = true;
-        for (size_t k = 0; k < this->by_position.size(); ++k) {
+        for (std::uint64_t k = 0; k < this->by_position.size(); ++k) {
             if (first) {
                 result = "" + std::to_string(this->by_position[k]);
                 first = false;

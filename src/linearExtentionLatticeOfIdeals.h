@@ -10,6 +10,7 @@
 #include <list>
 #include <tuple>
 #include <iterator>
+#include <cstdint>
 
 #include "linearExtentionTreeOfIdeals.h"
 

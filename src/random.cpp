@@ -8,6 +8,7 @@
 
 #include <chrono>
 #include "random.h"
+#include <cstdint>
 
 std::shared_ptr<std::uint64_t> Random::START_SEED = std::make_shared<std::uint64_t>((std::uint64_t) std::chrono::high_resolution_clock::now().time_since_epoch().count());
 std::shared_ptr<Random> Random::GENERATORE_SEED_RANDOM = std::make_shared<RandomUni>(Random::START_SEED);

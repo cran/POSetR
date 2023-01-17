@@ -1,4 +1,5 @@
 #include "displayMessage.h"
+#include <cstdint>
 
 
 unsigned long DisplayMessageCout::OUTPUT_SEC = 10;

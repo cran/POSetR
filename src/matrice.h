@@ -1,6 +1,7 @@
 #ifndef matrice_hpp
 #define matrice_hpp
 #include <algorithm>
+#include <cstdint>
 
 class Matrice {
 private:

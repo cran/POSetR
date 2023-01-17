@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <Rcpp.h>
+#include <cstdint>
 
 #include "linearExtension.h"
 #include "functionLinearExtension.h"

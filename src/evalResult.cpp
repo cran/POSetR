@@ -1,6 +1,7 @@
 #include <chrono>
 #include <fstream>
 #include "evalResult.h"
+#include <cstdint>
 
 extern const char DELIMETER;
 

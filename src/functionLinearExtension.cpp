@@ -1,4 +1,5 @@
 #include "functionLinearExtension.h"
+#include <cstdint>
 
 //************************************
 //************************************

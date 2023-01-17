@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <cstdint>
 
 class my_exception : public std::runtime_error {
     std::string msg;

@@ -1,4 +1,5 @@
 #include "linearExtensionGenerator.h"
+#include <cstdint>
 
 
 // ***********************************************

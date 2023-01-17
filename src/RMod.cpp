@@ -13,6 +13,7 @@
 #include "utilita.h"
 #include "poset.h"
 #include "myException.h"
+#include <cstdint>
 
 #define throw_line(arg) throw my_exception(arg, __FILE__, __LINE__);
 

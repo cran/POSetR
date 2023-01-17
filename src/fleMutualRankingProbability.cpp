@@ -1,4 +1,5 @@
 #include <vector>
+#include <cstdint>
 
 #include "linearExtension.h"
 #include "functionLinearExtension.h"

@@ -15,6 +15,7 @@
 #include <chrono>
 #include <iostream>
 #include "paramType.h"
+#include <cstdint>
 
 // ***********************************************
 // ***********************************************

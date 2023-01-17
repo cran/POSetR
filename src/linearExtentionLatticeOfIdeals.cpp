@@ -1,6 +1,7 @@
 #include <functional>
 #include <map>
 #include "linearExtentionLatticeOfIdeals.h"
+#include <cstdint>
 
 // ***********************************************
 // ***********************************************

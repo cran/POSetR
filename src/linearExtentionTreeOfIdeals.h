@@ -11,6 +11,7 @@
 #include <fstream>
 #include <functional>
 #include "linearExtension.h"
+#include <cstdint>
 
 
 class TreeOfIdeals {

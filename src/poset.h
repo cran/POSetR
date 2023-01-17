@@ -13,6 +13,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <Rcpp.h>
+#include <cstdint>
 
 #include "displayMessage.h"
 #include "matrice.h"

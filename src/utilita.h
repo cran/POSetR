@@ -12,6 +12,7 @@
 #include <iostream>
 #include "evalResult.h"
 #include "displayMessage.h"
+#include <cstdint>
 
 std::string& FindAndReplaceAll(std::string& data, std::string toSearch, std::string replaceStr);
 std::string matri_to_string(std::vector<std::vector<double>>&);

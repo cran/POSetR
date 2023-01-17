@@ -5,6 +5,7 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <cstdint>
 
 #include "paramType.h"
 #include "linearExtension.h"

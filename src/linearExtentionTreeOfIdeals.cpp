@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <numeric>
 #include "linearExtentionTreeOfIdeals.h"
+#include <cstdint>
 
 /**
 * Left create the leftmost subtree containning all the ideals that not include n.

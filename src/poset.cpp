@@ -9,6 +9,7 @@
 #include <condition_variable>
 #include <mutex>
 #include <chrono>
+#include <cstdint>
 
 #include "matrice.h"
 #include "linearExtension.h"
@@ -319,7 +320,7 @@ std::shared_ptr<LinearExtension> POSet::FirstLE() const {
             setOne.insert(el.first);
     }
     
-    for (long int k = 0; k < result->size(); ++k) {
+    for (std::uint64_t k = 0; k < result->size(); ++k) {
         std::uint64_t min_el = *(setOne.begin());
         POSet::UpdateForFirst(downSets, setOne, min_el);
         result->set(k, min_el);
