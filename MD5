@@ -1,7 +1,7 @@
-7b62c0ae5785d1176daa4877695002c8 *DESCRIPTION
-d5c154570cf5833b10173d53ec1357af *NAMESPACE
+1450cbf105dde23a38405b5ab816a030 *DESCRIPTION
+14619e87ede41c304d71efaf68234094 *NAMESPACE
 eb428b6bf9ee5e12f842a963120b2c0a *R/LEapply.R
-b7f4c90905745107b6d38583fd24af3d *R/POSetR-package.R
+4c8bc30d19f1e9d0fb92e7a610f89bc9 *R/POSetR-package.R
 d0af12f862c0ad296d281034b3e5ccd1 *R/antiChain.R
 e0ccb7188264a00798121a79f8450ec4 *R/chain.R
 794ce8096b2f36aa63382e4655ad4db6 *R/intersection.R
@@ -15,7 +15,7 @@ ef6523eb62d66c6761ccd20561863466 *R/poset_from_igraph.R
 40f65bf87cda4c45a1406320d95af97d *R/productOrder.R
 7745a776b976ad63dd753cf9cab3449f *R/summary.poset.R
 fee2b46f3b946a56a96a4c788aab0c6c *R/utilities.R
-8f410f9d5dda7736f06ccf23321e8721 *build/partial.rdb
+704b4c668d3da30995f430bd76965b3f *build/partial.rdb
 fac8ef20a7dd160e088483b75b8be8bd *inst/REFERENCES.bib
 9a129d3f11fb57d3bf9723a0d467466b *man/LEapply.Rd
 ca9a99d4f62f57d4dd38266a1af1043b *man/POSetR-package.Rd
@@ -33,7 +33,7 @@ a5f5f69863b095b129991df3789c2c0a *man/print.poset.Rd
 4957d46b0a3b75fa6d8229a305b0c25a *man/print.summary_poset.Rd
 197104a396af74b2c3654444cc0f83ff *man/productOrder.Rd
 bd3ee0651dce1cff3f36718fb02a2c67 *man/summary.poset.Rd
-6d9afd5ba5e86faf4b50f2f9a3d76c48 *src/RMod.cpp
+9d0182d8a93cf0f06cd310f4cd80b792 *src/RMod.cpp
 d9ae4d7dce8355ced9b454fde3378a7a *src/RMod.h
 0799cbc13fe63a512e7546ab9b53ba0f *src/RcppExports.cpp
 ef7815f77fa9e3746c9747552babf059 *src/displayMessage.cpp

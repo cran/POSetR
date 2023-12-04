@@ -5,6 +5,7 @@
 #' @name POSetR-package
 #' @aliases POSetR-package
 #' @author \packageAuthor{POSetR}
+#' @importFrom Rdpack reprompt
 #' @importFrom Rcpp evalCpp
 #' @importFrom grDevices rgb
 #' @importFrom methods new

@@ -323,8 +323,7 @@ Rcpp::List POSetR::coveredBy(Rcpp::StringVector r_elements) const {
             std::uint64_t c_el = this->poset->StartPosition(r_el);
             c_elements->push_back(c_el);
         } catch(int ex) {
-            std::string err_msg = r_el + " not used";
-            ::Rf_warning(r_el.c_str());
+            ::Rf_warning("wrong argument");
         }
     }
     try {
@@ -365,9 +364,8 @@ Rcpp::StringVector POSetR::downSet(Rcpp::StringVector r_elements) const {
             std::uint64_t c_el = this->poset->StartPosition(r_el);
             c_elements->insert(c_el);
         } catch(int ex) {
-            std::string err_msg = r_el + " not used";
-            ::Rf_warning(r_el.c_str());
-        }
+          ::Rf_warning("wrong argument");
+          }
     }
     try {
         std::shared_ptr<std::set<std::uint64_t>> c_downSet = this->poset->DownSet(*c_elements);
@@ -399,8 +397,7 @@ Rcpp::StringVector POSetR::upSet(Rcpp::StringVector r_elements) const {
             std::uint64_t c_el = this->poset->StartPosition(r_el);
             c_elements->insert(c_el);
         } catch(int ex) {
-            std::string err_msg = r_el + " not used";
-            ::Rf_warning(r_el.c_str());
+          ::Rf_warning("wrong argument");
         }
     }
     try {

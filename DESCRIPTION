@@ -1,8 +1,8 @@
 Package: POSetR
 Type: Package
 Title: Partially Ordered Sets in R
-Version: 1.1.1
-Date: 2023-01-16
+Version: 1.1.4
+Date: 2023-12-04
 Authors@R: c(person("Alberto", "Arcagni", role = c("aut", "cre"), email = "alberto.arcagni@uniroma1.it"), person("Alessandro", "Avellone", role = c("aut"), email = "alessandro.avellone@unimib.it"), person("Marco", "Fattore", role = c("aut"), email = "marco.fattore@unimib.it"))
 Author: Alberto Arcagni [aut, cre],
   Alessandro Avellone [aut],
@@ -14,9 +14,9 @@ Imports: Rcpp (>= 1.0.0), igraph, methods, Rdpack
 RdMacros: Rdpack
 LinkingTo: Rcpp
 SystemRequirements: C++17
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 NeedsCompilation: yes
-Packaged: 2023-01-16 11:46:21 UTC; alber
+Packaged: 2023-12-04 13:19:08 UTC; alber
 Repository: CRAN
-Date/Publication: 2023-01-17 10:40:02 UTC
+Date/Publication: 2023-12-04 15:20:15 UTC
